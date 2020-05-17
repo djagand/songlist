@@ -2,7 +2,7 @@
 
 Steps to run the project:
 
- git clone GIT_URL
+ git clone https://github.com/djagand/songlist.git
  
  cd songlist
  
