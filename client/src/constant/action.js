@@ -1,0 +1,9 @@
+export const OPEN_POP_UP = 'openPopUp';
+export const CLOSE_POP_UP = 'closePopUp';
+export const SET_MESSAGE = 'setMessage';
+export const CLEAR_MESSAGE = 'clearMessage';
+export const LOAD = 'load';
+export const SET_SELECTED_PLAYLIST = 'setSelectedPlaylist';
+export const SET_PLAYLISTS = 'setPlaylists';
+export const PLAY = 'play';
+export const PAUSE = 'pause';

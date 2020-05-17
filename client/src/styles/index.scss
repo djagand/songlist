@@ -1,0 +1,566 @@
+@mixin clickable(){
+    cursor: pointer;
+}
+@mixin customScroll(){
+    ::-webkit-scrollbar {
+        width: 10px;
+        background: black;
+        &-track {
+            box-shadow: inset 0 0 5px black;
+            border: 1px solid #363C3C;
+        }
+        &-thumb {
+            background: #393D3D;
+            &:hover {
+                background: grey;
+            }
+        }
+    }
+}
+@mixin scroll(){
+    .scroll{
+        height: 90%;
+        overflow: auto;
+    }
+}
+@mixin alignCenter(){
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+@mixin radioField(){
+    .radioField{
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 2px;
+        .checkbox{
+            @include alignCenter();
+            width: 10px !important;
+            height: 10px !important;
+            border: 1px solid grey;
+            padding: 2px;
+            margin-right: 5px;
+            cursor: pointer;
+            @include clickable();
+        }
+        .textValue{
+            padding-left: 2px;
+        }
+    }
+}
+.app{
+    font-family: sans-serif;
+    font-size: 14px;
+    background-color: black;
+    color:white;
+    display: flex;
+    flex-direction: column;
+    .icon{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: fit-content;
+        svg {
+            fill: white;
+        }
+    }
+    .toolTip {
+        position: relative;
+        display: inline-block;
+    }
+    .toolTip .toolTipFullText {
+        visibility: hidden;
+        min-width: 100px;
+        width: fit-content;
+        max-width: 200px;
+        text-align: center;
+        padding: 5px;
+        position: absolute;
+        top: 40px;
+        z-index: 1;
+        transition-delay: 1s linear;
+        border-radius: 2px;
+    }
+    .toolTip:hover .toolTipFullText {
+        visibility: visible;
+        background: green;
+    }
+    .show{
+        display: block;
+    }
+    .hide{
+        display: none;
+    }
+    .searchBar{
+        display: flex;
+        background: white;
+        width: 200px;
+        border-radius: 10px;
+        svg{
+            fill: black !important;
+        }
+        input{
+            width: 80%;
+            height: 100%;
+            border: none;
+            padding: 5px;
+            font-size: 14px;
+            &:focus{
+                outline: none;
+            }
+        }
+        .icon{
+            opacity: 0.4;
+        }
+    }
+    .filter{
+        display: flex;
+        color: white;
+        width: 100%;
+        padding: 5px 5px;
+        border-radius: 5px;
+        .show{
+            display: none;
+        }
+        .filterIcon{
+            width: 5%;
+        }
+        .filterInput{
+            width: 90%;
+        }
+        .closeIcon{
+            width: 5%;
+        }
+        &:hover{
+           font-weight: bold;
+           border: 1px solid grey;
+           .show{
+               display: block;
+           }
+            input{
+                font-weight: bold;
+            }
+        }
+        .icon{
+            svg{
+                fill: white !important;
+            }
+        }
+        input{
+            width: 80%;
+            height: 100%;
+            border: none;
+            padding: 5px;
+            font-size: 14px;
+            color: white;
+            background:#101414;
+            &:focus{
+                outline: none;
+            }
+        }
+        .closeIcon{
+            display: none;
+            justify-content: flex-end;
+            z-index: 100;
+        }
+        ::placeholder{
+            opacity: 1;
+            color: white;
+        }
+    }
+    .filterInputonFocus{
+        background: #444c4c;
+        input{
+            background: #444c4c;
+        }
+    }
+    .padAround{
+        padding: 5px;
+    }
+    .iconWithText{
+        display: flex;
+        align-items: center;
+    }
+    @include radioField();
+    @include scroll();
+    @include customScroll();
+    .labelAndField{
+        display: flex;
+        flex-direction: column;
+        padding: 2px;
+        .textField{
+            padding: 5px 0px;
+            margin: 5px 0px;
+            outline: 0;
+        }
+    }
+    .buttonField-center{
+        @include alignCenter();
+    }
+    .button{
+        color: white;
+        background: green;
+        border-radius: 25px;
+        padding: 6px;
+        margin: 5px;
+        width: fit-content;
+    }
+    .link {
+        &:hover{
+            font-weight: bold;
+        }
+    }
+    .iconOuterCircle{
+        svg{
+            border-radius: 15px;
+            border: 1px solid white;
+        }
+    }
+    .loader{
+        position: relative;
+        z-index: 100;
+        img{
+            position: absolute;
+        }
+    }
+    .pane{
+        top: 15px;
+        left: 30px;
+        position: relative;
+        z-index: 100;
+    }
+    .actionPane{
+        background: #2E3030;
+        z-index: 100;
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: left;
+        padding: 5px 5px;
+        .action{
+            padding: 5px 15px;
+            opacity: 0.4;
+            min-width: 120px;
+            @include clickable();
+            &:hover{
+                opacity: 1;
+                background: #3F4141;
+            }
+        }
+    }
+    .backgroundOverlay{
+        background-color:transparent;
+        position:fixed;
+        top:0;
+        left:0;
+        right:0;
+        bottom:0;
+        display:block;
+    }
+    select{
+        float: left;
+        margin: 5px;
+        padding: 5px;
+        outline: 0; 
+        border-radius: 6px;
+        .option{
+            background: black;
+            color: white;
+            @include customScroll();
+        }
+    }
+    .clickable{
+        @include clickable();
+    }
+    .disabledBtn{
+        cursor: no-drop;
+        opacity: 0.4;
+    }
+    .blur{
+        opacity: 0.4;
+    }
+    .warning{
+        color: orange;
+    }
+    .error{
+        background: red;
+    }
+    .activeRow{
+        color: #50f550;
+    }
+    .s{
+        font-size: 14px;
+    }
+    .m{
+        font-size: 16px;
+    }
+    .title{
+        padding: 5px;
+    }
+    .globalMessage{
+        padding: 10px;
+        position: fixed;
+        width: 96vw;
+        z-index: 4000;
+        left: 0;
+        text-align: center;
+        bottom: 0vh;
+        .closeIcon{
+            float: right;
+        }
+    }
+    .popUp{
+        max-height: 75vh;
+        width: 40vw;
+        z-index: 2000;
+        border-style: none;
+        border-radius: 8px;
+        position: fixed;
+        padding-bottom: 10px;
+        left: 30vw;
+        background: #2E3030;
+        .popUpComponent{
+            max-height: 75vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .popUpCloseIcon{
+                width: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: flex-end;
+            }
+            .popUpBody{
+                height: fit-content;
+                overflow-y: auto;
+                display: flex;
+                flex-direction: column;
+                padding: 10px;
+                .textField{
+                    width: 100%;
+                }
+                .title{
+                    text-align: center;
+                }
+            }
+        }
+    }
+    .table{
+        width: 100%;
+        height: 96%;
+        box-sizing: border-box;
+        .tableHead, .tableBody{
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            .tableRow{
+                display: flex;
+                padding: 5px 0px;
+                border-bottom: 1px solid #2F3232;
+                svg{
+                    display: none;
+                }
+                &:hover{
+                    svg{
+                        display: block;
+                    }
+                }
+                div{
+                    display: flex;
+                    align-items: center;
+                }
+            }
+        }
+        .tableHead{
+            height: 10%;
+            .tableRow{
+                padding-bottom: 5px;
+                div:last-child{
+                    padding-right: 10px;
+                }
+            }
+        }
+        .tableBody{
+            height: 90%;
+            @include scroll();
+            .tableRow{
+                &:hover{
+                    background: #2F3232;
+                }
+            }
+        }
+        .cell{
+            &-5{
+                width: 5%;
+            }
+            &-10{
+                width: 10%;
+            }
+            &-20{
+                width: 20%;
+            }
+            &-25{
+                width: 25%;
+            }
+            &-30{
+                width: 30%;
+            }
+            &-40{
+                width: 40%;
+            }
+            &-50{
+                width: 50%;
+            }
+            &-60{
+                width: 60%;
+            }
+            &-70{
+                width: 70%;
+            }
+            &-80{
+                width: 80%;
+            }
+            &-90{
+                width: 90%;
+            }
+        }
+    }
+    .content{
+        display: flex;
+        height: 85vh;;
+        .leftPane{
+            width: 15vw;
+            background: #040C0C;
+            .leftPaneHome{
+                height: 20%;
+            }
+            .leftPaneLibrary{
+                height: 30%;
+            }
+            .playlists{
+                height: 40%;
+                .playlistName{
+                    padding: 5px;
+                }
+            }
+            .leftPaneAddPlaylist{
+                height: 10%;
+                border-top: 1px solid grey;
+            }
+        }
+        .centerPane{
+            width: 65vw;
+            background:#101414;
+            .centerTopPane{
+                display: flex;
+                align-items: center;
+                height: 40px;
+            }
+            .playlistDetail{
+                height: 95%;
+                .playlistInformation{
+                    height: 30%;
+                    padding: 5px;
+                    display: flex;
+                    align-items: center;
+                    .pictureContainer{
+                        max-width: 145px;
+                        max-height: 145px;
+                        height: 100%;
+                        width: 20%;
+                        background: orange;
+                    }
+                    .detail{
+                        width: 80%;
+                        height: 80%;
+                        padding: 15px;
+                        box-sizing: border-box;
+                        display: flex;
+                        align-items: center;
+                        .playlistSummary{
+                            .playlistNameTitle{
+                                font-size: 25px;
+                                font-weight: bold;
+                                padding: 5px;
+                            }
+                            .songCounts{
+                                padding: 5px;
+                            }
+                        }
+                    }
+                }
+                .songs{
+                    height: 68%;
+                }
+            }
+            .library{
+                height: 95%;
+                .libraryInformation{
+                    height: 10%;
+                    padding: 5px;
+                    @include alignCenter();
+                    font-size: 28px;
+                }
+                .songs{
+                    height: calc(100% - 10% - 75px);
+                }
+            }
+            .songs{
+                padding: 2px;
+                width: 100%;
+                .addOrRemoveButton{
+                    height: 75px;
+                    display: flex;
+                    align-items: center;
+                    width: 100%;
+                    justify-content: flex-end;
+                    .filterContainer{
+                        width: 70%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        .libraryFilter{
+                            display: flex;
+                            align-items: center;
+                            justify-content: space-around;
+                            width: 100%;
+                        }
+                    }
+                    .buttonContainer{
+                        width: 30%;
+                        height: 100%;
+                        display: flex;
+                        align-items: center;
+                        justify-content: flex-end;
+                    }
+                }
+            }
+        }
+        .rightPane{
+            width: 20vw;
+            background:#080F0F;
+        }
+    }
+    .footer{
+        position: sticky !important;
+        bottom: 0;
+        height: 10vh;
+        background:#1E2121;
+        display: flex;
+        .footerLeftPane{
+            width: 25%;
+            display: flex;
+            align-items: left;
+            justify-content: center;
+            flex-direction: column;
+        }
+        .footerCenterPane{
+            width: 50%;
+            @include alignCenter();
+        }
+        .footerRightPane{
+            width: 25%;
+        }
+    }
+}
